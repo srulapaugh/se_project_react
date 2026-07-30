@@ -1,0 +1,96 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0 28px;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+}
+
+.header__logo {
+  margin-right: 24px;
+  display: block;
+  width: 89px;
+  height: 40px;
+}
+
+.header__date-and-location {
+  margin: 0;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.header__user-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__add-clothes-btn {
+  margin-left: auto;
+  margin-right: 20px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.header__add-clothes-btn:hover {
+  opacity: 0.6;
+}
+
+.header__username {
+  margin: 0;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+}
+
+.header__avatar {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 700px) {
+  .header {
+    align-items: flex-start;
+    padding: 18px 0 16px;
+  }
+
+  .header__info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .header__user-container {
+    gap: 12px;
+  }
+
+  .header__username {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .header__add-clothes-btn {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .header__date-and-location {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+.header__username {
+  margin: 0;
+}
