@@ -53,7 +53,6 @@ function App() {
           weatherData={weatherData}
           handleCardClick={handleCardClick}
         />
-        <Footer />
       </div>
       <ModalWithForm
         name="add-garment"
@@ -125,6 +124,7 @@ function App() {
         card={selectedCard}
         onClose={closeActiveModal}
       />
+      <Footer />
     </div>
   );
 }
