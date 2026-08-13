@@ -37,6 +37,8 @@ function App() {
     setSelectedCard(card);
   };
 
+  const onAddItem = (data) => {};
+
   const handleAddClick = () => {
     setActiveModal("add-garment");
   };
