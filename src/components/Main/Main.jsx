@@ -2,7 +2,12 @@ import "./Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 
-function Main({ clothingItems, weatherData, handleCardClick }) {
+function Main({
+  clothingItems,
+  weatherData,
+  handleCardClick,
+  currentTemperatureUnit,
+}) {
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
