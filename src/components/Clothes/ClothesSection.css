@@ -28,7 +28,8 @@
 .clothes-section__items {
   display: grid;
   grid-template-columns: repeat(auto-fit, 283px);
-  grid-template-row: repeat(auto-fit, 283px);
+  grid-template-rows: repeat(auto-fit, 283px);
   grid-gap: 20px;
   padding: 0;
+  margin: auto;
 }

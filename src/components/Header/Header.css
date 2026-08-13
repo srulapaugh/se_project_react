@@ -58,6 +58,11 @@
   object-fit: cover;
 }
 
+.header__nav-link {
+  color: black;
+  text-decoration: none;
+}
+
 @media screen and (max-width: 700px) {
   .header {
     align-items: flex-start;

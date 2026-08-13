@@ -18,10 +18,10 @@
 }
 
 .modal__footer {
+  padding: 16px;
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 20px 32px 32px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .modal__caption {
@@ -61,4 +61,62 @@
 
 .modal__close:hover {
   opacity: 0.6;
+}
+
+.modal__content_type_confirm {
+  width: 350px;
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.modal__confirm-text {
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 10px 0 25px;
+  color: #1a1a1a;
+}
+
+.modal__confirm-button {
+  background: none;
+  border: none;
+  color: #f66161;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 15px;
+  padding: 0;
+}
+
+.modal__confirm-button:hover {
+  opacity: 0.8;
+}
+
+.modal__cancel-button {
+  background: none;
+  border: none;
+  color: #1a1a1a;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modal__cancel-button:hover {
+  opacity: 0.7;
+}
+
+.modal__delete-button {
+  background: none;
+  border: none;
+  color: #f66161;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+}
+
+.modal__delete-button:hover {
+  opacity: 0.8;
 }

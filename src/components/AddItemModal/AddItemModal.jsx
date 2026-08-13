@@ -20,7 +20,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
       title="New garment"
       onClose={onClose}
       isOpen={isOpen}
-      onSubmit={handleSubmit}
+      handleSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}
