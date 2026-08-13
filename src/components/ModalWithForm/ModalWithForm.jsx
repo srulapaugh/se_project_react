@@ -1,7 +1,16 @@
 import "./ModalWithForm.css";
 import close from "../../assets/greycloseicon.png";
+import AddItemModal from "../AddItemModal/AddItemModal";
 
-function ModalWithForm({ children, buttonText, title, isOpen, name, onClose }) {
+function ModalWithForm({
+  children,
+  buttonText,
+  title,
+  isOpen,
+  name,
+  onClose,
+  handleSubmit,
+}) {
   return (
     <div className={`modal modal_type_${name} ${isOpen ? "modal_opened" : ""}`}>
       <div className="modal__content">
@@ -9,10 +18,10 @@ function ModalWithForm({ children, buttonText, title, isOpen, name, onClose }) {
         <button onClick={onClose} className="modal__close" type="button">
           <img src={close} alt="close" />
         </button>
-        <form name={name} className="modal__form">
+        <form onSubmit={handleSubmit} name={name} className="modal__form">
           {children}
           <button type="submit" className="modal__submit">
-            {buttonText}
+            {buttonText} Add garment
           </button>
         </form>
       </div>

@@ -1,3 +1,4 @@
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "../Header/Header";
@@ -6,6 +7,7 @@ import Footer from "../Footer/Footer";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal";
+import Profile from "../Profile/Profile.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import {
   defaultClothingItems,
@@ -37,7 +39,22 @@ function App() {
     setSelectedCard(card);
   };
 
-  const onAddItem = (data) => {};
+  const onAddItem = (inputValues) => {
+    //call fetch function
+    //.then()... include all the stuff below
+
+    const newCardData = {
+      name: inputValues.name,
+      link: inputValues.link,
+      weather: inputValues.weatherType,
+    };
+    //dont use newCardData
+    // the ID will be included in the response data
+
+    setClothingItems([...clothingItems, inputValues]);
+    closeAllModals();
+    //.catch()
+  };
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -62,12 +79,29 @@ function App() {
     >
       <div className="page">
         <div className="page__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main
-            clothingItems={clothingItems}
-            weatherData={weatherData}
-            handleCardClick={handleCardClick}
-          />
+          <Header handleAddClick={handleAddClick} weatherData={weatherData} />{" "}
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  clothingItems={clothingItems}
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+          </Routes>
+          <Footer />
         </div>
 
         <AddItemModal
@@ -80,7 +114,6 @@ function App() {
           card={selectedCard}
           onClose={closeActiveModal}
         />
-        <Footer />
       </div>
     </CurrentTemperatureUnitContext.Provider>
   );
