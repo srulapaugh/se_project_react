@@ -11,13 +11,13 @@ import {
   coordinates,
   apiKey,
 } from "../../utils/constants.js";
-import currentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnit.jsx";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: 999 },
+    temp: { F: 999, C: 999 },
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
@@ -53,7 +53,7 @@ function App() {
   }, []);
 
   return (
-    <currentTemperatureUnitContext.Provider
+    <CurrentTemperatureUnitContext.Provider
       value={{ currentTemperatureUnit, handleToggleSwitchChange }}
     >
       <div className="page">
@@ -63,7 +63,6 @@ function App() {
             clothingItems={clothingItems}
             weatherData={weatherData}
             handleCardClick={handleCardClick}
-            currentTemperatureUnit={currentTemperatureUnit}
           />
         </div>
         <ModalWithForm
@@ -141,7 +140,7 @@ function App() {
         />
         <Footer />
       </div>
-    </currentTemperatureUnitContext.Provider>
+    </CurrentTemperatureUnitContext.Provider>
   );
 }
 
