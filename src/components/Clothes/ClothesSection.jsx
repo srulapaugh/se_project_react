@@ -23,7 +23,6 @@ export default function ClothesSection({
           <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
         ))}
       </ul>
-      ;
     </div>
   );
 }
