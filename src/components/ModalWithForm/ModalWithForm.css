@@ -105,12 +105,31 @@
   font-weight: 400;
 }
 
+.modal__input_invalid {
+  border-bottom: 1px solid #ff0000;
+}
+
 .modal__input::placeholder {
   color: rgba(0, 0, 0, 0.5);
 }
 
 .modal__input:focus {
   outline: none;
+}
+
+.modal__error {
+  display: none;
+  margin-top: 6px;
+
+  color: #ff0000;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.modal__error_visible {
+  display: block;
 }
 
 .modal__radio-buttons {

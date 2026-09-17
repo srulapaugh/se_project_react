@@ -18,7 +18,12 @@ function ModalWithForm({
         <button onClick={onClose} className="modal__close" type="button">
           <img src={close} alt="close" />
         </button>
-        <form onSubmit={onSubmit} name={name} className="modal__form">
+        <form
+          onSubmit={onSubmit}
+          name={name}
+          className="modal__form"
+          noValidate
+        >
           {children}
           <button type="submit" className="modal__submit">
             {buttonText} Add garment

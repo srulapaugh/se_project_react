@@ -1,30 +1,38 @@
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
+const RegisterModal = ({ isOpen, onRegister, onClose }) => {
   const defaultValues = {
     name: "",
-    imageUrl: "",
-    weatherType: "",
+    avatar: "",
+    email: "",
+    password: "",
   };
 
   const validateForm = (formValues) => {
     const nextErrors = {};
     const trimmedName = formValues.name.trim();
-    const trimmedImageUrl = formValues.imageUrl.trim();
+    const trimmedAvatar = formValues.avatar.trim();
+    const trimmedEmail = formValues.email.trim();
 
     if (!trimmedName) {
-      nextErrors.name = "Please enter a garment name.";
+      nextErrors.name = "Please enter your name.";
     } else if (trimmedName.length < 2) {
       nextErrors.name = "Name must be at least 2 characters.";
     } else if (trimmedName.length > 30) {
       nextErrors.name = "Name must be 30 characters or fewer.";
     }
 
-    if (!trimmedImageUrl) {
-      nextErrors.imageUrl = "Please add an image URL.";
-    } else if (!/^https?:\/\/.+/i.test(trimmedImageUrl)) {
-      nextErrors.imageUrl = "Please enter a valid image URL.";
+    if (!trimmedAvatar) {
+      nextErrors.avatar = "Please add an image URL.";
+    } else if (!/^https?:\/\/.+/i.test(trimmedAvatar)) {
+      nextErrors.avatar = "Please enter a valid image URL.";
+    }
+
+    if (!trimmedEmail) {
+      nextErrors.email = "Please enter your email.";
+    } else if (!/^https?:\/\/.+/i.test(trimmedAvatar)) {
+      nextErrors.email = "Please enter a valid email.";
     }
 
     if (!formValues.weatherType) {
@@ -146,4 +154,4 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
   );
 };
 
-export default AddItemModal;
+export default RegisterModal;
