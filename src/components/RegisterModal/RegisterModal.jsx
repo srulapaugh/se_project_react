@@ -31,12 +31,12 @@ const RegisterModal = ({ isOpen, onRegister, onClose }) => {
 
     if (!trimmedEmail) {
       nextErrors.email = "Please enter your email.";
-    } else if (!/^https?:\/\/.+/i.test(trimmedAvatar)) {
+    } else if (!/^https?:\/\/.+/i.test(trimmedEmail)) {
       nextErrors.email = "Please enter a valid email.";
     }
 
-    if (!formValues.weatherType) {
-      nextErrors.weatherType = "Please select a weather type.";
+    if (!formValues.password) {
+      nextErrors.password = "Please enter a password.";
     }
 
     return nextErrors;
@@ -57,15 +57,15 @@ const RegisterModal = ({ isOpen, onRegister, onClose }) => {
       return;
     }
 
-    onAddItem({ ...values });
+    onRegister({ ...values });
   }
 
   const showError = (fieldName) => isSubmitted && Boolean(errors[fieldName]);
 
   return (
     <ModalWithForm
-      name="add-garment"
-      title="New garment"
+      name="register"
+      title="Sign Up"
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
@@ -88,68 +88,60 @@ const RegisterModal = ({ isOpen, onRegister, onClose }) => {
           {errors.name || ""}
         </span>
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
-        Image{" "}
+      <label htmlFor="avatar" className="modal__label">
+        Avatar{" "}
         <input
           type="text"
-          className={`modal__input ${showError("imageUrl") ? "modal__input_invalid" : ""}`}
-          name="imageUrl"
-          id="imageUrl"
-          placeholder="ImageUrl"
-          value={values.imageUrl}
+          className={`modal__input ${showError("avatar") ? "modal__input_invalid" : ""}`}
+          name="avatar"
+          id="avatar"
+          placeholder="avatar"
+          value={values.avatar}
           onChange={handleChange}
-          aria-invalid={showError("imageUrl")}
+          aria-invalid={showError("avatar")}
         />
         <span
-          className={`modal__error ${showError("imageUrl") ? "modal__error_visible" : ""}`}
+          className={`modal__error ${showError("avatar") ? "modal__error_visible" : ""}`}
         >
-          {errors.imageUrl || ""}
+          {errors.avatar || ""}
         </span>
       </label>
-      <fieldset className="modal__radio-buttons">
-        <legend className="modal__legend">Select the weather type</legend>
-        <label htmlFor="hot" className="modal__label modal__label_type_radio">
-          <input
-            id="hot"
-            type="radio"
-            name="weatherType"
-            className="modal__radio-input"
-            value="hot"
-            checked={values.weatherType === "hot"}
-            onChange={handleChange}
-          />
-          Hot
-        </label>
-        <label htmlFor="warm" className="modal__label modal__label_type_radio">
-          <input
-            id="warm"
-            type="radio"
-            name="weatherType"
-            className="modal__radio-input"
-            value="warm"
-            checked={values.weatherType === "warm"}
-            onChange={handleChange}
-          />
-          Warm
-        </label>
-        <label htmlFor="cold" className="modal__label modal__label_type_radio">
-          <input
-            id="cold"
-            type="radio"
-            name="weatherType"
-            className="modal__radio-input"
-            value="cold"
-            checked={values.weatherType === "cold"}
-            onChange={handleChange}
-          />
-          Cold
-        </label>
+      <label htmlFor="email" className="modal__label">
+        Email{" "}
+        <input
+          type="email"
+          className={`modal__input ${showError("email") ? "modal__input_invalid" : ""}`}
+          name="email"
+          id="email"
+          placeholder="email"
+          value={values.email}
+          onChange={handleChange}
+          aria-invalid={showError("email")}
+        />
         <span
           className={`modal__error ${showError("weatherType") ? "modal__error_visible" : ""}`}
         >
-          {errors.weatherType || ""}
+          {errors.email || ""}
         </span>
-      </fieldset>
+      </label>
+      <label htmlFor="password" className="modal__label">
+        Password{" "}
+        <input
+          type="password"
+          className={`modal__input ${showError("password") ? "modal__input_invalid" : ""}`}
+          name="password"
+          id="password"
+          placeholder="password"
+          value={values.password}
+          onChange={handleChange}
+          aria-invalid={showError("password")}
+        />
+        <span
+          className={`modal__error ${showError("weatherType") ? "modal__error_visible" : ""}`}
+        >
+          {errors.password || ""}
+        </span>
+      </label>
     </ModalWithForm>
   );
 };
