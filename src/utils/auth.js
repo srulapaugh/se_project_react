@@ -21,3 +21,16 @@ export const signin = ({ email, password }) => {
     return Promise.reject(`Error: ${res.status}`);
   });
 };
+
+export const checkToken = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then((res) => {
+    if (res.ok) return res.json();
+    return Promise.reject(`Error: ${res.status}`);
+  });
+};
