@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import "./Header.css";
 import logo from "../../assets/logo.png";
 import avatar from "../../assets/avatarpic.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({ handleAddClick, weatherData }) {
+  const currentUser = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
