@@ -10,6 +10,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
@@ -180,15 +181,16 @@ function App() {
                   />
                 }
               />
-
               <Route
-                path="/profile"
+                path="/"
                 element={
-                  <Profile
-                    clothingItems={clothingItems}
-                    onCardClick={handleCardClick}
-                    handleAddClick={handleAddClick}
-                  />
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Profile
+                      clothingItems={clothingItems}
+                      onCardClick={handleCardClick}
+                      handleAddClick={handleAddClick}
+                    />
+                  </ProtectedRoute>
                 }
               />
             </Routes>

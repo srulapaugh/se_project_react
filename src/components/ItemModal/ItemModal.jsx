@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import close from "../../assets/closeicon.png";
 import "./ItemModal.css";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ isOpen, card, onClose, onDelete }) {
+  const currentUser = useContext(CurrentUserContext);
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
 
   const handleDeleteClick = () => {
