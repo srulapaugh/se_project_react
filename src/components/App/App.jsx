@@ -15,11 +15,13 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
 import { signup, signin, checkToken } from "../../utils/auth.js";
+import { updateUserProfile } from "../../utils/api.js";
 
 import { coordinates, apiKey } from "../../utils/constants.js";
 
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
   const [clothingItems, setClothingItems] = useState([]);
@@ -61,6 +63,21 @@ function App() {
 
   const handleLoginClick = () => {
     setActiveModal("login");
+  };
+
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
+  };
+
+  const handleUpdateUser = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+
+    updateUserProfile({ name, avatar }, token)
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
 
   const closeActiveModal = () => {
@@ -189,6 +206,8 @@ function App() {
                       clothingItems={clothingItems}
                       onCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
+                      onProfileEditClick={handleEditProfileClick}
+                      onSignOut={handleSignOut}
                     />
                   </ProtectedRoute>
                 }
@@ -220,6 +239,11 @@ function App() {
           <LoginModal
             isOpen={activeModal === "login"}
             onLogin={handleLogin}
+            onClose={closeActiveModal}
+          />
+          <EditProfileModal
+            isOpen={activeModal === "edit-profile"}
+            onUpdateUser={handleUpdateUser}
             onClose={closeActiveModal}
           />
         </div>
