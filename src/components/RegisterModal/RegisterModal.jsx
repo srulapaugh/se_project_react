@@ -31,7 +31,7 @@ const RegisterModal = ({ isOpen, onRegister, onClose, onToggleClick }) => {
 
     if (!trimmedEmail) {
       nextErrors.email = "Please enter your email.";
-    } else if (!/^https?:\/\/.+/i.test(trimmedEmail)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmedEmail)) {
       nextErrors.email = "Please enter a valid email.";
     }
 
@@ -123,7 +123,7 @@ const RegisterModal = ({ isOpen, onRegister, onClose, onToggleClick }) => {
           aria-invalid={showError("email")}
         />
         <span
-          className={`modal__error ${showError("weatherType") ? "modal__error_visible" : ""}`}
+          className={`modal__error ${showError("email") ? "modal__error_visible" : ""}`}
         >
           {errors.email || ""}
         </span>
@@ -141,7 +141,7 @@ const RegisterModal = ({ isOpen, onRegister, onClose, onToggleClick }) => {
           aria-invalid={showError("password")}
         />
         <span
-          className={`modal__error ${showError("weatherType") ? "modal__error_visible" : ""}`}
+          className={`modal__error ${showError("password") ? "modal__error_visible" : ""}`}
         >
           {errors.password || ""}
         </span>

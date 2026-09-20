@@ -11,6 +11,7 @@ import Profile from "../Profile/Profile.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import {
@@ -19,15 +20,14 @@ import {
   deleteItem,
   addCardLike,
   removeCardLike,
+  updateUserProfile,
 } from "../../utils/api.js";
 import { signup, signin, checkToken } from "../../utils/auth.js";
-import { updateUserProfile } from "../../utils/api.js";
 
 import { coordinates, apiKey } from "../../utils/constants.js";
 
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext.jsx";
-import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
   const [clothingItems, setClothingItems] = useState([]);
@@ -95,13 +95,14 @@ function App() {
   };
 
   const onAddItem = (inputValues) => {
+    const token = localStorage.getItem("jwt");
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
       weather: inputValues.weatherType,
     };
 
-    addItem(newCardData)
+    addItem(newCardData, token)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
@@ -110,7 +111,9 @@ function App() {
   };
 
   const handleDeleteItem = (card) => {
-    deleteItem(card._id)
+    const token = localStorage.getItem("jwt");
+
+    deleteItem(card._id, token)
       .then(() => {
         setClothingItems((items) =>
           items.filter((item) => item._id !== card._id),
@@ -236,14 +239,14 @@ function App() {
                 }
               />
               <Route
-                path="/"
+                path="/profile"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
                       clothingItems={clothingItems}
                       onCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
-                      onProfileEditClick={handleEditProfileClick}
+                      onEditProfileClick={handleEditProfileClick}
                       onSignOut={handleSignOut}
                       onCardLike={handleCardLike}
                     />
@@ -281,6 +284,7 @@ function App() {
             onClose={closeActiveModal}
             onToggleClick={handleToggleAuthModal}
           />
+
           <EditProfileModal
             isOpen={activeModal === "edit-profile"}
             onUpdateUser={handleUpdateUser}
