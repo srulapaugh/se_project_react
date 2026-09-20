@@ -21,6 +21,7 @@ function ItemModal({ isOpen, card, onClose, onDelete }) {
   };
 
   const handleClose = () => {
+    console.log("close clicked");
     setIsConfirmingDelete(false);
     onClose();
   };

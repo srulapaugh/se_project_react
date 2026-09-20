@@ -58,11 +58,11 @@ export function useFormWithValidation(defaultValues, validate) {
     return false;
   }
 
-  function resetForm() {
-    setValues(defaultValues);
+  function resetForm(newValues = defaultValues) {
+    setValues(newValues);
     setErrors({});
     setIsSubmitted(false);
-    setIsValid(!validate || Object.keys(validate(defaultValues)).length === 0);
+    setIsValid(!validate || Object.keys(validate(newValues)).length === 0);
   }
 
   return {
