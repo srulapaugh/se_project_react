@@ -13,7 +13,13 @@ import LoginModal from "../LoginModal/LoginModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
-import { getItems, addItem, deleteItem } from "../../utils/api.js";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api.js";
 import { signup, signin, checkToken } from "../../utils/auth.js";
 import { updateUserProfile } from "../../utils/api.js";
 
@@ -46,6 +52,10 @@ function App() {
     currentTemperatureUnit === "F"
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
+  };
+
+  const handleToggleAuthModal = () => {
+    setActiveModal((current) => (current === "login" ? "register" : "login"));
   };
 
   const handleCardClick = (card) => {
@@ -146,6 +156,26 @@ function App() {
     setCurrentUser({});
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+
+    !isLiked
+      ? addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item)),
+            );
+          })
+          .catch(console.error)
+      : removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item)),
+            );
+          })
+          .catch(console.error);
+  };
+
   useEffect(() => {
     getWeather(coordinates, apiKey)
       .then((data) => {
@@ -185,7 +215,13 @@ function App() {
       >
         <div className="page">
           <div className="page__content">
-            <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+            <Header
+              handleAddClick={handleAddClick}
+              weatherData={weatherData}
+              isLoggedIn={isLoggedIn}
+              onRegisterClick={handleRegisterClick}
+              onLoginClick={handleLoginClick}
+            />
 
             <Routes>
               <Route
@@ -195,6 +231,7 @@ function App() {
                     clothingItems={clothingItems}
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -208,6 +245,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       onProfileEditClick={handleEditProfileClick}
                       onSignOut={handleSignOut}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
@@ -234,12 +272,14 @@ function App() {
             isOpen={activeModal === "register"}
             onRegister={handleRegistration}
             onClose={closeActiveModal}
+            onToggleClick={handleToggleAuthModal}
           />
 
           <LoginModal
             isOpen={activeModal === "login"}
             onLogin={handleLogin}
             onClose={closeActiveModal}
+            onToggleClick={handleToggleAuthModal}
           />
           <EditProfileModal
             isOpen={activeModal === "edit-profile"}

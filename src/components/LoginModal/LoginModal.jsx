@@ -1,7 +1,7 @@
 import { useFormWithValidation } from "../../hooks/useFormWithValidation";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-const LoginModal = ({ isOpen, onLogin, onClose }) => {
+const LoginModal = ({ isOpen, onLogin, onClose, onToggleClick }) => {
   const defaultValues = {
     email: "",
     password: "",
@@ -43,6 +43,7 @@ const LoginModal = ({ isOpen, onLogin, onClose }) => {
   }
 
   const showError = (fieldName) => isSubmitted && Boolean(errors[fieldName]);
+  const isSubmitDisabled = Object.keys(validateForm(values)).length > 0;
 
   return (
     <ModalWithForm
@@ -51,6 +52,9 @@ const LoginModal = ({ isOpen, onLogin, onClose }) => {
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      isSubmitDisabled={isSubmitDisabled}
+      toggleText="or Signup"
+      onToggleClick={onToggleClick}
     >
       <label htmlFor="login-email" className="modal__label">
         Email{" "}

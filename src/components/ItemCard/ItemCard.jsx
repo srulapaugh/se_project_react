@@ -1,6 +1,18 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick }) {
+function ItemCard({ item, onCardClick, onCardLike }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const isLiked = item.likes.some((id) => id === currentUser._id);
+
+  const itemLikeButtonClassName = `card__like-button ${
+    isLiked ? "card__like-button_active" : ""
+  }`;
+
+  const handleLike = () => {
+    onCardLike({ id: item._id, isLiked });
+  };
+
   return (
     <li className="card">
       <img
@@ -11,7 +23,16 @@ function ItemCard({ item, onCardClick }) {
         src={item.imageUrl}
         alt={item.name}
       />
-      <h2 className="card__name">{item.name}</h2>
+      <div className="card__info">
+        <h2 className="card__name">{item.name}</h2>
+        {currentUser._id && (
+          <button
+            type="button"
+            className={itemLikeButtonClassName}
+            onClick={handleLike}
+          ></button>
+        )}
+      </div>
     </li>
   );
 }

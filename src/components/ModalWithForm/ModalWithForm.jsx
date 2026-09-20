@@ -1,6 +1,5 @@
 import "./ModalWithForm.css";
 import close from "../../assets/greycloseicon.png";
-import AddItemModal from "../AddItemModal/AddItemModal";
 
 function ModalWithForm({
   children,
@@ -10,6 +9,9 @@ function ModalWithForm({
   name,
   onClose,
   onSubmit,
+  isSubmitDisabled,
+  toggleText,
+  onToggleClick,
 }) {
   return (
     <div className={`modal modal_type_${name} ${isOpen ? "modal_opened" : ""}`}>
@@ -25,9 +27,24 @@ function ModalWithForm({
           noValidate
         >
           {children}
-          <button type="submit" className="modal__submit">
-            {buttonText} Add garment
-          </button>
+          <div className="modal__button-row">
+            <button
+              type="submit"
+              className="modal__submit"
+              disabled={isSubmitDisabled}
+            >
+              {buttonText}
+            </button>
+            {toggleText && (
+              <button
+                type="button"
+                className="modal__toggle-link"
+                onClick={onToggleClick}
+              >
+                {toggleText}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

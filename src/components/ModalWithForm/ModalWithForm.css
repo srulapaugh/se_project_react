@@ -188,7 +188,7 @@
   border: none;
   border-radius: 4px;
 
-  background-color: #0000004d;
+  background-color: #000;
   color: #fff;
 
   font-family: "Cabinet Grotesk", Arial, sans-serif;
@@ -199,17 +199,41 @@
   cursor: pointer;
 }
 
-.modal__submit:hover {
-  background-color: rgba(0, 0, 0, 0.6);
+.modal__submit:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal__submit:disabled {
   background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
   cursor: default;
 }
 
-.modal__submit:disabled:hover {
-  background-color: rgba(0, 0, 0, 0.3);
+.modal__button-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.modal__toggle-link {
+  padding: 0;
+
+  border: none;
+  background-color: transparent;
+
+  color: rgba(0, 0, 0, 0.5);
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  text-decoration: underline;
+
+  cursor: pointer;
+}
+
+.modal__toggle-link:hover {
+  color: rgba(0, 0, 0, 0.8);
 }
 
 @media screen and (max-width: 600px) {
