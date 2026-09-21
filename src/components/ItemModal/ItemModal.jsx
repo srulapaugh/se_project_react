@@ -5,6 +5,8 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ItemModal({ isOpen, card, onClose, onDelete }) {
   const currentUser = useContext(CurrentUserContext);
+
+  const isOwned = currentUser && card.owner === currentUser._id;
   const [isConfirmingDelete, setIsConfirmingDelete] = useState(false);
 
   const handleDeleteClick = () => {
@@ -64,13 +66,15 @@ function ItemModal({ isOpen, card, onClose, onDelete }) {
               <h2 className="modal__caption">{card.name}</h2>
               <p className="modal__weather">Weather: {card.weather}</p>
             </div>
-            <button
-              onClick={handleDeleteClick}
-              type="button"
-              className="modal__delete-button"
-            >
-              Delete item
-            </button>
+            {isOwned && (
+              <button
+                onClick={handleDeleteClick}
+                type="button"
+                className="modal__delete-button"
+              >
+                Delete item
+              </button>
+            )}
           </div>
         </div>
       )}

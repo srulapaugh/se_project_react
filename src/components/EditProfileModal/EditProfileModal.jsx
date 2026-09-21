@@ -67,6 +67,7 @@ const EditProfileModal = ({ isOpen, onUpdateUser, onClose }) => {
     <ModalWithForm
       name="edit-profile"
       title="Change profile data"
+      buttonText="Save"
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}

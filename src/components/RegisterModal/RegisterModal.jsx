@@ -67,6 +67,7 @@ const RegisterModal = ({ isOpen, onRegister, onClose, onToggleClick }) => {
     <ModalWithForm
       name="register"
       title="Sign Up"
+      buttonText="Sign up"
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
@@ -74,13 +75,13 @@ const RegisterModal = ({ isOpen, onRegister, onClose, onToggleClick }) => {
       toggleText="or Log In"
       onToggleClick={onToggleClick}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name{" "}
         <input
           type="text"
           name="name"
           className={`modal__input ${showError("name") ? "modal__input_invalid" : ""}`}
-          id="name"
+          id="register-name"
           placeholder="Name"
           value={values.name}
           onChange={handleChange}
