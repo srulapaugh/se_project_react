@@ -26,7 +26,6 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
     } else if (!/^https?:\/\/.+/i.test(trimmedImageUrl)) {
       nextErrors.imageUrl = "Please enter a valid image URL.";
     }
-
     if (!formValues.weatherType) {
       nextErrors.weatherType = "Please select a weather type.";
     }
@@ -58,17 +57,18 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
     <ModalWithForm
       name="add-garment"
       title="New garment"
+      buttonText="Add garment"
       onClose={onClose}
       isOpen={isOpen}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="add-name" className="modal__label">
         Name{" "}
         <input
           type="text"
           name="name"
           className={`modal__input ${showError("name") ? "modal__input_invalid" : ""}`}
-          id="name"
+          id="add-name"
           placeholder="Name"
           value={values.name}
           onChange={handleChange}
@@ -80,13 +80,13 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
           {errors.name || ""}
         </span>
       </label>
-      <label htmlFor="imageUrl" className="modal__label">
+      <label htmlFor="add-imageUrl" className="modal__label">
         Image{" "}
         <input
           type="text"
           className={`modal__input ${showError("imageUrl") ? "modal__input_invalid" : ""}`}
           name="imageUrl"
-          id="imageUrl"
+          id="add-imageUrl"
           placeholder="ImageUrl"
           value={values.imageUrl}
           onChange={handleChange}
