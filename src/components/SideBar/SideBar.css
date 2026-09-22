@@ -21,10 +21,41 @@
   object-fit: cover;
 }
 
+.sidebar__avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+
 .sidebar__username {
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   margin: 0;
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
+}
+
+.sidebar__link-button {
+  align-self: flex-start;
+  padding: 0;
+
+  border: none;
+  background-color: transparent;
+
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #000;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.sidebar__link-button:hover {
+  opacity: 0.6;
 }

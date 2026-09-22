@@ -26,8 +26,8 @@ function ItemCard({ item, onCardClick, onCardLike }) {
         src={item.imageUrl}
         alt={item.name}
       />
-      <div className="card__info">
-        <h2 className="card__name">{item.name}</h2>
+      <div className="card__name">
+        <p className="card__name-text">{item.name}</p>
         {currentUser._id && (
           <button
             type="button"

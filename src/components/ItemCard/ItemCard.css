@@ -34,6 +34,15 @@
   white-space: nowrap;
 }
 
+.card__name-text {
+  margin: 0;
+  color: #00000099;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
 .card__like-button {
   width: 18px;
   height: 15px;
